@@ -14,7 +14,7 @@ pipeline {
             }
         }
 
-	stage ('Build') {
+	    stage ('Build') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-    stage ('Push') {
+        stage ('Push') {
             steps {
                  docker.withRegistry('http://localhost:5001') {
 
@@ -34,5 +34,6 @@ pipeline {
                      customImage.push()
                 }
            }
+        }
     }
 }
