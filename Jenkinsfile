@@ -27,7 +27,7 @@ pipeline {
         stage ('Push') {
             steps {
                 script{
-                     docker.withRegistry('http://localhost:5001') {
+                     docker.withRegistry('http://172.18.0.4:5000') {
 
                          def customImage = docker.build("demo-image:${env.BUILD_ID}")
 
