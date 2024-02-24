@@ -37,5 +37,12 @@ pipeline {
                 }
            }
         }
+        stage('Deploy'){
+            steps {
+                sh "docker stop demo | true"
+                sh "docker rm demo | true"
+                sh "docker run --name demo -d -p 9000:9000 172.18.0.4:5000/demo-image:${env.BUILD_ID} --server.port=9000"
+            }
+        }
     }
 }
