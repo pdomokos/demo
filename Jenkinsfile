@@ -24,5 +24,15 @@ pipeline {
                 }
             }
         }
+    stage ('Push') {
+            steps {
+                 docker.withRegistry('http://localhost:5001') {
+
+                     def customImage = docker.build("demo-image:${env.BUILD_ID}")
+
+                     /* Push the container to the custom Registry */
+                     customImage.push()
+                }
+           }
     }
 }
